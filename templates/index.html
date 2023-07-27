@@ -1,14 +1,106 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Trips List</title>
+<html lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="icon" href="http://localhost:3000/favicon.ico">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" maximum-scale="1.0," user-scalable="0/">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    
+    <title>부산어때</title>
+
+    <!-- css -->
+    <link rel= "stylesheet" href= "./css_files/base.css" type= "text/css">
+    <link rel= "stylesheet" href= "./css_files/nav.css" type= "text/css">
+    <link rel= "stylesheet" href= "./css_files/home.css" type= "text/css">
+    <link rel= "stylesheet" href= "./css_files/popular.css" type= "text/css">
+    <link rel= "stylesheet" href= "./css_files/footer.css" type= "text/css">
+
+    <!-- js -->
+    <script src="home.js"></script>
+
+
 </head>
-<body>
-    <h1>Trips List</h1>
-    <ul>
-        {% for trip in trips %}
-        <li>{{ trip }}</li>
-        {% endfor %}
-    </ul>
+
+  <body>
+    <div id="root">
+      <!-- 1. 네비 -->
+      <section class="navBarSection">
+        <div class="header activeHeader">
+          <!-- 로고, 부산어때 제목 -->
+          <div class="logoDiv">
+            <a href="#" class="logo">
+              <h1 class="flex">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z">
+                  </path>
+                </svg>부산어때</h1>
+            </a>
+          </div>
+
+            <div class="navBar">
+              <ul class="navLists flex">
+                <h3 class="navItem">홈</h3>
+                <h3 class="navItem">축제</h3>
+                <h3 class="navItem">맛집</h3>
+                <h3 class="navItem">추천</h3>
+                <h3 class="navItem">QnA</h3>
+              </ul>
+            </div>
+      </section>
+      
+      <!-- 2. 메인 -->
+      <section class="home">
+        <div class="secContainer container">
+          <div class="homeText">
+            <h1 class="title">부산 일정을 계획해보세요</h1>
+            <h3 class="subTitle">경비 계획을 손쉽게!!</h3>
+          </div>
+
+          <!-- 입력칸 -->
+          <div class= "homeCard">
+            <form method="POST", action= '/recommend'>
+              <!-- 달력 -->
+              <div id= "day">
+                <input name= "dep_date" value= "date" type= "date" data-placeholder= "기간(시작)" required/>
+                ~
+                <input name= "arr_date" value= "date" type= "date" data-placeholder= "기간(종료)" required/>
+              </div>
+
+              <!-- 렌트 -->
+              <div id= "rent">
+                <select class= "dropdown" name= car_capacity>
+                  <option value= 0>미선택</option>
+                  <option value= 4>4인승</option>
+                  <option value= 5>5인승</option>
+                  <option value= 7>7인승</option>
+                  <option value= 9>9인승</option>
+                  <option value= 11>11인승</option>
+                  <option value= 12>12인승</option>
+                </select>
+              </div>
+
+              <div id= "price">
+                  <input class= "money" name= "budget" type="text" placeholder="예산을 입력해주세요"/>
+              </div>
+
+              <div id= "ok" style="float: right;">
+                <button name= "ok_btn" class="btn">확인</button>
+              </div>
+
+
+            </from>
+          </div>
+        </div>
+      </section>
+
+      
+
 </body>
 </html>
+

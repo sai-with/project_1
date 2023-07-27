@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="icon" href="http://localhost:3000/favicon.ico">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" maximum-scale="1.0," user-scalable="0/">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Web site created using create-react-app">
+  <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+
+  <link rel="manifest" href="http://localhost:3000/manifest.json">
+
+  <title>부산어때</title>
+
+  <!-- css -->
+  <link rel="stylesheet" href="./css_files/base.css" type="text/css">
+  <link rel="stylesheet" href="./css_files/result.css" type="text/css">
+  <link rel="stylesheet" href="./css_files/nav.css" type="text/css">
+</head>
+
+<body>
+  <div id="root">
+    <!-- 1. 네비 -->
+    <section class="navBarSection">
+      <div class="header activeHeader">
+        <!-- 로고, 부산어때 제목 -->
+        <div class="logoDiv">
+          <a href="http://localhost:3000/#" class="logo">
+            <h1 class="flex">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="icon"
+                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z">
+                </path>
+              </svg>부산어때
+            </h1>
+          </a>
+        </div>
+
+        <div class="navBar">
+          <ul class="navLists flex">
+            <h3 class="navItem">홈</h3>
+            <h3 class="navItem">축제</h3>
+            <h3 class="navItem">맛집</h3>
+            <h3 class="navItem">추천</h3>
+            <h3 class="navItem">QnA</h3>
+          </ul>
+        </div>
+    </section>
+
+    <!-- 2. 메인 -->
+    <section class="home">
+      <div class="secContainer container">
+
+        <div class="homeText">
+          <h1 class="title">부산 일정을 계획해보세요</h1>
+          <h3 class="subTitle">경비 계획을 손쉽게!!</h3>
+        </div>
+    </section>
+
+    <!-- 3. 가볼만한 곳 -->
+    <section class="popular">
+      
+        <div class= "box1">
+          <table class= "hotel_table3">
+            <tr>
+              <th class="hotel_th"></td>
+              <th class="hotel_th"></td>
+              <th class="hotel_th" colspan="2">1순위</td>
+              <th class="hotel_th" colspan="2">2순위</td>
+              <th class="hotel_th" colspan="2">3순위</td>
+            </tr>
+            <tr>
+              <th class="hotel_th"></td>
+              <th class="hotel_th" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">총액</td>
+              <th class="hotel_th" colspan="2" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">{{총액 변수}}</td>
+              <th class="hotel_th" colspan="2" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">{{총액 변수}}</td>
+              <th class="hotel_th" colspan="2">{{총액 변수}}</td>
+            </tr>
+            <tr>
+              <th class="hotel_th" scope="col" rowspan= "3">항공</td>                
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">항공사</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{항공사 변수}}</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{항공사 변수}}</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+            </tr>
+            <tr>
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">출발시간</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{오는날 출발시간 변수}}</td>
+            </tr>
+            <tr>
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">출발시간</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{오는날 출발시간 변수}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class= "box2">
+          <table class= "hotel_table3">
+            <tr>
+              <th class="hotel_th" scope="col" rowspan="4">항공</td>
+            </tr>
+            <tr>
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">항공사</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{항공사 변수}}</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{항공사 변수}}</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+            </tr>
+            <tr>
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">출발시간</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{오는날 출발시간 변수}}</td>
+            </tr>
+            <tr>
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">출발시간</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{오는날 출발시간 변수}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class= "box3">
+          <table class= "hotel_table3">
+            <tr>
+              <th class="hotel_th" scope="col" rowspan="5">항공</td>
+              <th class="hotel_th" scope="col" style="border-right: 1px solid #444444;" ></td>
+              <th class="hotel_th" scope="col" style="font-size: 20px;">가는날</td>
+              <th class="hotel_th" scope="col" style="border-right: 1px solid #444444; font-size: 20px;">오는날</td>
+              <th class="hotel_th" scope="col" style="font-size: 20px;">가는날</td>
+              <th class="hotel_th" scope="col" style="border-right: 1px solid #444444; font-size: 20px;">오는날</td>
+              <th class="hotel_th" scope="col" style="font-size: 20px;">가는날</td>
+              <th class="hotel_th" scope="col" style="font-size: 20px;">오는날</td>
+            </tr>
+            <tr>
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">항공사</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{항공사 변수}}</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{항공사 변수}}</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+              <td class="hotel_td">{{항공사 변수}}</td>
+            </tr>
+            <tr>
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">출발시간</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{가는날 출발시간 변수}}</td>
+              <td class="hotel_td">{{오는날 출발시간 변수}}</td>
+            </tr>
+            <tr>
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">도착시간</td>
+              <td class="hotel_td">{{가는날 도착시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 도착시간 변수}}</td>
+              <td class="hotel_td">{{가는날 도착시간 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 도착시간 변수}}</td>
+              <td class="hotel_td">{{가는날 도착시간 변수}}</td>
+              <td class="hotel_td">{{오는날 도착시간 변수}}</td>
+            </tr>
+            <tr>
+              <th class="hotel_td" style="border-right: 1px solid #444444; border-left: 1px solid #444444;">비용</td>
+              <td class="hotel_td">{{가는날 비용 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 비용 변수}}</td>
+              <td class="hotel_td">{{가는날 비용 변수}}</td>
+              <td class="hotel_td" style="border-right: 1px solid #444444;">{{오는날 비용 변수}}</td>
+              <td class="hotel_td">{{가는날 비용 변수}}</td>
+              <td class="hotel_td">{{오는날 비용 변수}}</td>
+            </tr>
+          </table>
+        </div>
+      </table>
+    </section>
+
+    <!-- <section class="popular section container">
+        <div class="setContainer">
+          <div class="mainContent grid">
+            <div class="singleDestination">
+              <div class="destImage">
+                <img src="./july24_files/photo1.jpg" alt="Image title">
+                <div class="overlayInfo">
+                  <h3>Machu Picchu</h3>
+                  <p>해운대</p>
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path>
+                  </svg>
+                </div>
+                <div class= 'test'>
+                    
+                </div>
+                <div class="destFooter">
+                  <div class="number">01</div>
+                  <div class="destText flex">
+                    <h6>해운대</h6>
+                  </div>
+                </div>
+                <div class="destFooter">
+                    <div class="number">01</div>
+                    <div class="destText flex">
+                      <h6>해운대</h6>
+                    </div>
+                  </div>
+              </div>
+            </div> -->
+    <!-- <div class="singleDestination">
+              <div class="destImage">
+                <img src="./july24_files/photo2.jpg" alt="Image title">
+                <div class="overlayInfo">
+                  <h3>Taj Mahl</h3>
+                  <p>광안리</p>
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path>
+                  </svg>
+                </div>
+                <div class="destFooter">
+                  <div class="number">02</div>
+                  <div class="destText flex">
+                    <h6>광안리</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="singleDestination">
+              <div class="destImage">
+                <img src="./july24_files/photo3.jpg" alt="Image title">
+                <div class="overlayInfo">
+                  <h3>as asdgsda</h3>
+                  <p>자갈치시장</p>
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path>
+                  </svg>
+                </div>
+                <div class="destFooter">
+                  <div class="number">03</div>
+                  <div class="destText flex">
+                    <h6>자갈치시장</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+    </section>
+
+    <!-- 4. 하단 -->
+    <!-- !!수정!! -->
+    <div class="footer">
+      <div class="secContainer container grid">
+        <div class="logoDiv">
+          <div class="footerLogo">
+            <a href="http://localhost:3000/#" class="logo flex">
+              <h1 class="flex">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="icon"
+                  height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z">
+                  </path>
+                </svg>부산어때
+              </h1>
+            </a>
+          </div>
+
+          <div class="socials flex">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" viewBox="0 0 16 16"
+              class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.5 3h2.5v-3h-2.5c-1.93 0-3.5 1.57-3.5 3.5v1.5h-2v3h2v8h3v-8h2.5l0.5-3h-3v-1.5c0-0.271 0.229-0.5 0.5-0.5z">
+              </path>
+            </svg>
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="icon"
+              height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z">
+              </path>
+            </svg>
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="icon"
+              height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M512 378.7c-73.4 0-133.3 59.9-133.3 133.3S438.6 645.3 512 645.3 645.3 585.4 645.3 512 585.4 378.7 512 378.7zM911.8 512c0-55.2.5-109.9-2.6-165-3.1-64-17.7-120.8-64.5-167.6-46.9-46.9-103.6-61.4-167.6-64.5-55.2-3.1-109.9-2.6-165-2.6-55.2 0-109.9-.5-165 2.6-64 3.1-120.8 17.7-167.6 64.5C132.6 226.3 118.1 283 115 347c-3.1 55.2-2.6 109.9-2.6 165s-.5 109.9 2.6 165c3.1 64 17.7 120.8 64.5 167.6 46.9 46.9 103.6 61.4 167.6 64.5 55.2 3.1 109.9 2.6 165 2.6 55.2 0 109.9.5 165-2.6 64-3.1 120.8-17.7 167.6-64.5 46.9-46.9 61.4-103.6 64.5-167.6 3.2-55.1 2.6-109.8 2.6-165zM512 717.1c-113.5 0-205.1-91.6-205.1-205.1S398.5 306.9 512 306.9 717.1 398.5 717.1 512 625.5 717.1 512 717.1zm213.5-370.7c-26.5 0-47.9-21.4-47.9-47.9s21.4-47.9 47.9-47.9 47.9 21.4 47.9 47.9a47.84 47.84 0 0 1-47.9 47.9z">
+              </path>
+            </svg>
+          </div>
+        </div>
+        <div class="footerLinks">
+          <span class="linkTitle"></span>
+          <li><a href="http://localhost:3000/#">홈</a></li>
+          <li><a href="http://localhost:3000/#">축제</a></li>
+          <li><a href="http://localhost:3000/#">맛집</a></li>
+          <li><a href="http://localhost:3000/#">추천</a></li>
+          <li><a href="http://localhost:3000/#">QnA</a></li>
+        </div>
+        <div class="footerLinks"><span class="linkTitle">연락주세요</span>
+          <span class="phone">+444 565 6655</span>
+          <span class="email">asdf@asdf.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
