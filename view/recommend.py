@@ -76,7 +76,7 @@ class Query:
                     result.append(fetch) # 튜플형태로 저장
                 else:
                     return None, -1
-                result.append(total_price)
+            result.append(total_price)
             #print(f"flight: {result}, extra: {total_price}")
             return result, extra_price # 예산 계산해서 반환 [(go), (back)], extra_bud: 남은 예산
      
@@ -108,7 +108,7 @@ class Query:
                 extra_price -= fetch[-1] # 예산에서 차감하고
                 total_price += fetch[-1]
                 result.append(fetch) # 리스트에 추가
-            result.append(total_price)
+        result.append(total_price)
         return result, extra_price # [(가는 편), (오는 편)], 남은 금액
         
     def rent_low(self, dep_date, arr_date, budget, capacity):
