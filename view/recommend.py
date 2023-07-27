@@ -7,6 +7,17 @@ import sqlite3
 conn = db커넥터
 recommender = Recommend(출발날짜, 도착날짜, 예산, 렌트수용인원, 커넥터)
 result = recommender.recommender()
+
+result 예시
+{
+    숙소우선계획:[(숙소이름, 별점, 위치, 유형[0이 호텔 1이 펜션], 가격, 이미지, 예약링크),
+    (가는날짜, 항공사, 출발시간, 도착시간, 가격),
+    (오는날짜, 항공사, 출발시간, 도착시간, 가격),
+    (출발날짜, 차종, 1일기준가격)],
+    항공우선계획:[위와 동일],
+    렌트우선계획:[위와 동일], -- 렌트 미선택시 생략 -- 
+    총액: int
+}
 '''
 
 class Query:
@@ -14,8 +25,6 @@ class Query:
         self.conn = conn
         self.cursor = cursor
     def accom(self, dep_date, arr_date, star, budget):
-        # if budget < 0:
-        #     return None, -1
         extra_price = budget # 남은 예산
         days = int(arr_date[-2:]) - int(dep_date[-2:]) # 몇박 인지
         
@@ -36,14 +45,13 @@ class Query:
                 GROUP BY name
                 HAVING COUNT(*) = {days}
                 AND total_price <= {budget}
-                ORDER BY price, star DESC
+                ORDER BY price DESC, star DESC
                 LIMIT 1;
                 '''
         )
         fetch = self.cursor.fetchone()
         if fetch is not None: # 결과값이 있고, 예산 안에서 해결된 경우
-            extra_price -= fetch[4] # 남은 예산 
-            #print(f"accom: {[fetch]}, extra: {total_price}")
+            extra_price -= fetch[4] # 남은 예산
             return [fetch, fetch[4]], extra_price # [(accom)] 리스트 안에 들어간 형태로 반환
         else:
             return None, -1
@@ -53,9 +61,9 @@ class Query:
             query = ['dep_time', 'price']# 가는 건 시간 기준, 오는 건 가격 기준 조회
             direction = ['go', 'back'] # 가는 편/오는 편
             extra_price = budget # 남은금액 계산용
-            total_price = 0
+            total_price = 0 # 지출금액
             result = []
-            # 김포-부산
+            # 김포-부산 | 부산-김포
             for i in range(0,2):
                 self.cursor.execute(
                     f'''
@@ -68,7 +76,7 @@ class Query:
                     LIMIT 1;
                     '''
                 )
-                # print(date[i], direction[i], query[i])
+                
                 fetch = self.cursor.fetchone()
                 if fetch is not None:
                     extra_price -= fetch[-1] # 예산에서 항공 요금 빼기
@@ -77,7 +85,6 @@ class Query:
                 else:
                     return None, -1
             result.append(total_price)
-            #print(f"flight: {result}, extra: {total_price}")
             return result, extra_price # 예산 계산해서 반환 [(go), (back)], extra_bud: 남은 예산
      
     def flight_time(self, dep_date, arr_date, budget):
@@ -112,8 +119,6 @@ class Query:
         return result, extra_price # [(가는 편), (오는 편)], 남은 금액
         
     def rent_low(self, dep_date, arr_date, budget, capacity):
-        # if budget < 0: # 연산이 의미없으면
-        #     return None, -1
         days = int(arr_date[-2:]) - int(dep_date[-2:]) # 몇박 인지
         
         extra_price = budget
@@ -138,8 +143,6 @@ class Query:
             return [fetch, total_price], extra_price   
     
     def rent_type(self, dep_date, arr_date, budget, capacity):
-        # if budget < 0: # 연산이 의미없으면
-        #     return None, -1
         days = int(arr_date[-2:]) - int(dep_date[-2:]) # 몇박 인지
         extra_price = budget
         total_price = 0
@@ -156,14 +159,12 @@ class Query:
                 '''
             )
         fetch = self.cursor.fetchone()
-        #print(f"fetch: {fetch}")
         if fetch is None:
             return None, -1
         else:
             extra_price -= (fetch[2] * days) # 총 여행기간동안의 비용 차감
             total_price += (fetch[2] * days)
             return [fetch, total_price], extra_price
-            #print(f"rent: {[fetch]}, extra: {total_price}")
 
 
 class Recommend():
@@ -183,20 +184,23 @@ class Recommend():
             result = {} # 두 경우의 수를 담을 딕셔너리
             
             ## 숙소 우선
-            flight1, extra1 = _query.flight_low(dep_date, arr_date, budget)
-            accom1, bud1 = _query.accom(dep_date, arr_date, 8, extra1) # 숙소 우선이기 때문에 별점 기준 8, 남은 예산 전달
+            accom1, extra1 = _query.accom(dep_date, arr_date, 8, budget) # 숙소 우선이기 때문에 별점 기준 8, 남은 예산 전달
+            flight1, bud1 = _query.flight_low(dep_date, arr_date, extra1)
             
             if None in [accom1 ,flight1] or bud1 < 0:# 예산이 모자랐거나, 조회된 데이터(예약가능한)가 없을 경우
                 result['accom_fir'] = None 
             else: # 제대로 조회된경우 
-                result['accom_fir'] = accom1[:-1] + flight1 # 숙소 우선 계획[(숙소), (가는편), (오는편)] 
+                total_price1 = accom1[-1] + flight1[-1] # [-1]값은 각각 항목의 비용
+                result['accom_fir'] = accom1[:-1] + flight1[:-1] + [total_price1]
+                # 숙소 우선 계획[(숙소), (가는편), (오는편)] 
             ## 항공 우선
             flight2, extra2 = _query.flight_time(dep_date, arr_date, budget)
             accom2, bud2 = _query.accom(dep_date, arr_date, 7, extra2) # 숙소 차선이기 때문에 별점 기준 7, 남은 예산 전달
             if None in [accom2, flight2] or bud2 < 0: 
                 result['flight_fir'] = None 
             else:
-                result['flight_fir'] = accom2 + flight2 # 항공 우선 계획[(숙소), (가는편), (오는편)]
+                total_price2 = accom2[-1] + flight2[-1]
+                result['flight_fir'] = accom2[:-1] + flight2[:-1] + [total_price2]# 항공 우선 계획[(숙소), (가는편), (오는편)]
             
             # 연결 해제
             self.cursor.close()
@@ -211,21 +215,22 @@ class Recommend():
             flight1, extra1 = _query.flight_low(dep_date, arr_date, budget)
             rent1, extra1_1 = _query.rent_low(dep_date, arr_date, extra1, car_capacity)
             accom1, bud1 = _query.accom(dep_date, arr_date, 8, extra1_1) # 숙소 우선이기 때문에 별점 기준 8, 남은 예산 전달
-            #print(f"flight1: {flight1}, {extra1}, rent1: {rent1}, {extra1_1}, accom1: {accom1}")
             if None in [accom1, flight1, rent1] or bud1 < 0:# 예산이 모자랐거나, 조회된 데이터(예약가능한)가 없을 경우
                 result['accom_fir'] = None 
             else: # 제대로 조회된경우 
-                result['accom_fir'] = accom1 + flight1 + rent1 # 숙소 우선 계획[(숙소), (가는편), (오는편)] 
+                print(f"{accom1[-1]}, {flight1[-1]}, {rent1[-1]}")
+                total_price1 = accom1[-1] + flight1[-1] + rent1[-1]
+                result['accom_fir'] = accom1[:-1] + flight1[:-1] + rent1[:-1] + [total_price1]# 숙소 우선 계획[(숙소), (가는편), (오는편)] 
             
             ## 항공 우선
-            #print(f"before case2: {dep_date}-{arr_date}, {budget}, {car_capacity}")
             flight2, extra2 = _query.flight_time(dep_date, arr_date, budget)
             rent2, extra2_1 = _query.rent_low(dep_date, arr_date, extra2, car_capacity)
             accom2, bud2 = _query.accom(dep_date, arr_date, 7, extra2_1) # 숙소 차선이기 때문에 별점 기준 7, 남은 예산 전달
             if None in [accom2, flight2, rent2] or bud2 < 0: 
                 result['flight_fir'] = None 
             else:
-                result['flight_fir'] = accom2 + flight2 + rent2 # 항공 우선 계획[(숙소), (가는편), (오는편)]
+                total_price2 = accom2[-1] + flight2[-1] + rent2[-1]
+                result['flight_fir'] = accom2[:-1] + flight2[:-1] + rent2[:-1] + [total_price2] # 항공 우선 계획[(숙소), (가는편), (오는편)]
 
             ## 렌트 우선
             flight3, extra3 = _query.flight_low(dep_date, arr_date, budget)
@@ -234,7 +239,8 @@ class Recommend():
             if None in [accom3, flight3, rent3] or bud3 < 0: 
                 result['rent_fir'] = None
             else:
-                result['rent_fir'] = accom3 + flight3 + rent3
+                total_price3 = accom3[-1] + flight3[-1] + rent3[-1]
+                result['rent_fir'] = accom3[:-1] + flight3[:-1] + rent3[:-1] + [total_price3]
             # 연결 해제
             self.cursor.close()
             self.conn.close()
