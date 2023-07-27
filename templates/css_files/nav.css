@@ -8,6 +8,8 @@
   width: 100%;
   padding: 1rem;
   z-index: 1000; }
+
+  
   .navBarSection .header .logoDiv .logo {
     color: var(--whiteColor);
     font-weight: 500;
@@ -27,5 +29,6 @@
       color: var(--whiteColor); }
 
 .navBarSection .activeHeader {
-  background: var(--textColor);
-  box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.45); }
+  /* background: var(--textColor); */
+  box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.45); 
+}

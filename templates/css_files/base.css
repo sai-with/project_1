@@ -57,12 +57,12 @@ li{
 
 /* 로그인, 로그아웃 버튼 */
 .btn{
-    padding: .4rem 1.5rem;
+    padding: 1rem 1rem;
     background: var(--PrimaryColor);
     border: none;
     outline: none;
     border-radius: 3rem;
-    cursor: pointer;
+    cursor: pointer;    
 }
 
 /* 로그인 버튼 */
