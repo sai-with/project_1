@@ -145,7 +145,7 @@ class Query:
         total_price = 0
         self.cursor.execute(
                 f'''
-                SELECT * FROM R_BOOK rb
+                SELECT rb.book_date, rc.name, rb.saled_price, rc.type, rc.capacity FROM R_BOOK rb
                 JOIN R_CAR rc
                 ON rb.rent_id = rc.id
                 WHERE capacity = {capacity} 
