@@ -1,0 +1,31 @@
+
+.navBarSection .header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  width: 100%;
+  padding: 1rem;
+  z-index: 1000; }
+  .navBarSection .header .logoDiv .logo {
+    color: var(--whiteColor);
+    font-weight: 500;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem; }
+  .navBarSection .header .logoDiv .icon {
+    color: var(--PrimaryColor);
+    font-size: 3rem;
+    margin-right: 10px; }
+  .navBarSection .header .navBar .navLists .navItem {
+    color: var(--blackColor);
+    font-size: 1.5rem;
+    padding-right: 2rem; }
+    .navBarSection .header .navBar .navLists .navItem:hover {
+      color: var(--whiteColor); }
+
+.navBarSection .activeHeader {
+  background: var(--textColor);
+  box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.45); }
