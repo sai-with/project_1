@@ -57,50 +57,84 @@
       <!-- 2. 메인 -->
       <section class="home">
         <div class="secContainer container">
-          <div class="homeText">
-            <h1 class="title">부산 일정을 계획해보세요</h1>
-            <h3 class="subTitle">경비 계획을 손쉽게!!</h3>
-          </div>
+            <div class="homeText">
+                <h1 class="title">부산 일정을 계획해보세요</h1>
+                <h3 class="subTitle">경비 계획을 손쉽게!!</h3>
+            </div>
 
           <!-- 입력칸 -->
-          <div class= "homeCard">
-            <form method="POST", action= '/recommend'>
-              <!-- 달력 -->
-              <div id= "day">
-                <input name= "dep_date" value= "date" type= "date" data-placeholder= "기간(시작)" required/>
-                ~
-                <input name= "arr_date" value= "date" type= "date" data-placeholder= "기간(종료)" required/>
-              </div>
+          <div class="homeCard">
+            <form method="POST" action="/">
+                <!-- 달력 -->
+                <div id="day">
+                    <input name="dep_date" value="" type="date" data-placeholder="기간(시작)" required />
+                    ~
+                    <input name="arr_date" value="date" type="date" data-placeholder="기간(종료)" required />
+                </div>
 
-              <!-- 렌트 -->
-              <div id= "rent">
-                <select class= "dropdown" name= car_capacity>
-                  <option value= 0>미선택</option>
-                  <option value= 4>4인승</option>
-                  <option value= 5>5인승</option>
-                  <option value= 7>7인승</option>
-                  <option value= 9>9인승</option>
-                  <option value= 11>11인승</option>
-                  <option value= 12>12인승</option>
-                </select>
-              </div>
+                <!-- 렌트 -->
+                <div id= "rent">
+                  <select class= "dropdown" name= car_capacity>
+                    <option value= 0>미선택</option>
+                    <option value= 4>4인승</option>
+                    <option value= 5>5인승</option>
+                    <option value= 7>7인승</option>
+                    <option value= 9>9인승</option>
+                    <option value= 11>11인승</option>
+                    <option value= 12>12인승</option>
+                  </select>
+                </div>
 
-              <div id= "price">
-                  <input class= "money" name= "budget" type="text" placeholder="예산을 입력해주세요"/>
-              </div>
+                <div id= "price">
+                    <input class= "money" name= "budget" type="text" placeholder="예산을 입력해주세요"/>
+                </div>
 
-              <div id= "ok" style="float: right;">
-                <button name= "ok_btn" class="btn">확인</button>
-              </div>
+                <div id= "ok" style="float: right;">
+                  <button name= "ok_btn" class="btn">확인</button>
+                </div>
 
 
-            </from>
+            </form>
           </div>
         </div>
       </section>
+    </div>
 
-      
+    <script>
+      function submitForm(event) {
+        event.preventDefault(); // 폼의 기본 동작(서버로 제출)을 막습니다.
 
-</body>
+        // 폼에 입력된 값을 가져옵니다.
+        const dep_date = document.querySelector('input[name="dep_date"]').value;
+        const arr_date = document.querySelector('input[name="arr_date"]').value;
+        const car_capacity = document.querySelector('select[name="car_capacity"]').value;
+        const budget = document.querySelector('input[name="budget"]').value;
+
+        // 폼 데이터를 JSON 형태로 만듭니다.
+        const formData = {
+          dep_date: dep_date,
+          arr_date: arr_date,
+          car_capacity: car_capacity,
+          budget: budget
+        };
+
+        // fetch를 사용하여 데이터를 서버로 전송합니다.
+        fetch('/result', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(response => response.json()) // 서버로부터 응답을 JSON 형태로 파싱합니다.
+        .then(data => {
+          // 서버로부터 받은 데이터(data)를 기반으로 결과 페이지로 이동합니다.
+          window.location.href = `/result?value=${encodeURIComponent(JSON.stringify(data))}`;
+        })
+        .catch(error => console.error('Error:', error));
+      }
+    </script>
+
+  </body>
 </html>
 
