@@ -33,7 +33,7 @@ def post():
         # 2-1. 호텔
         # hotel 변수 형식
         # [['이름', '숙소우선 호텔이름', '항공기우선 호텔이름', '렌트우선 호텔이름'], ['평점', '숙소우선 호텔평점', '항공기우선 호텔평점', '렌트우선 호텔평점']...]
-        hotel= [['이름'], ['평점'], ['위치'], ['금액(1박)']] # result.html 테이블 형식을 따름\
+        hotel= [['이름'], ['평점'], ['위치'], ['금액(원)']] # result.html 테이블 형식을 따름\
         if value["accom_fir"] is not None: # 숙소우선 경로가 없으면 인덱싱 시도시 에러나서 수정했습니다 (07/30/23 20:50))
             hotel_total= f'{value["accom_fir"][-1]:,}' # 호텔우선 총합(천 단위 콤마 포맷) # 
         else:
@@ -84,14 +84,17 @@ def post():
         rent= [['이름'], ['타입'], ['일자'], ['인승'], ['금액(1일)']] # result.html 테이블 형식을 따름
         # 렌트카를 선택했다면
         if value['rent_fir'] != None:
-            rent_total= f'{value["flight_fir"][-1]:,}' # 렌트우선 총합(천 단위 콤마 포맷)
+            if value["flight_fir"] is not None:
+                rent_total= f'{value["flight_fir"][-1]:,}' # 렌트우선 총합(천 단위 콤마 포맷)
+            else:
+                rent_total = ' '
             for v in value2:
                 if value[v] != None:
                     rent[0].append(value[v][3][1])
                     rent[1].append(value[v][3][3])
                     rent[2].append(value[v][3][0])
                     rent[3].append(value[v][3][4])
-                    rent[4].append(f'{value[v][2][4]:,}')
+                    rent[4].append(f'{value[v][3][2]:,}')
                 
                 # [['이름', ' ', ' ', ' '], ['타입', ' ', ' ', ' ']...]
                 else:
