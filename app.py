@@ -33,10 +33,14 @@ def post():
         # 2-1. 호텔
         # hotel 변수 형식
         # [['이름', '숙소우선 호텔이름', '항공기우선 호텔이름', '렌트우선 호텔이름'], ['평점', '숙소우선 호텔평점', '항공기우선 호텔평점', '렌트우선 호텔평점']...]
-        hotel= [['이름'], ['평점'], ['위치'], ['금액(원)']] # result.html 테이블 형식을 따름
-        hotel_total= f'{value["accom_fir"][-1]:,}' # 호텔우선 총합(천 단위 콤마 포맷)
+        hotel= [['이름'], ['평점'], ['위치'], ['금액(1박)']] # result.html 테이블 형식을 따름\
+        if value["accom_fir"] is not None: # 숙소우선 경로가 없으면 인덱싱 시도시 에러나서 수정했습니다 (07/30/23 20:50))
+            hotel_total= f'{value["accom_fir"][-1]:,}' # 호텔우선 총합(천 단위 콤마 포맷) # 
+        else:
+            hotel_total = ' '
         for v in value2:
             if value[v] != None:
+                
                 hotel[0].append(value[v][0][0]) # 이름
                 hotel[1].append(value[v][0][1]) # 평점
                 hotel[2].append(value[v][0][2]) # 위치
@@ -53,9 +57,13 @@ def post():
         # flight 변수 형식
         # [['항공사', '숙소우선 가는 항공사이름', '숙소우선 오는 항공사이름' '항공기우선 가는 항공사이름', '항공기우선 오는 항공사이름' '렌트우선 가는 항공사이름', '렌트우선 오는 항공사이름']...]
         flight= [['항공사'], ['일자'], ['출발시간'], ['도착시간'], ['금액(원)']] # result.html 테이블 형식을 따름
-        flight_total= f'{value["flight_fir"][-1]:,}'  # 호텔우선 총합(천 단위 콤마 포맷)
+        if value["flight_fir"] is not None:
+            flight_total= f'{value["flight_fir"][-1]:,}'
+        else:
+            flight_total = " "
         for v in value2:
             if value[v] != None:
+                  # 호텔우선 총합(천 단위 콤마 포맷)
                 flight[0].extend([value[v][1][1],value[v][2][1]]) # 항공사
                 flight[1].extend([value[v][1][0],value[v][2][0]]) # 일자
                 flight[2].extend([value[v][1][2],value[v][2][2]]) # 출발시간
@@ -73,7 +81,7 @@ def post():
         # 2-3. 렌트
         # rent 변수 형식
         # [['이름', '숙소우선 렌트카 이름', '항공기우선 렌트카 이름', '렌트우선 렌트카 이름'], ['타입', '숙소우선 렌트카 타입', '항공기우선 렌트카 타입', '렌트우선 렌트카 타입']...]
-        rent= [['이름'], ['타입'], ['일자'], ['인승'], ['금액(원)']] # result.html 테이블 형식을 따름
+        rent= [['이름'], ['타입'], ['일자'], ['인승'], ['금액(1일)']] # result.html 테이블 형식을 따름
         # 렌트카를 선택했다면
         if value['rent_fir'] != None:
             rent_total= f'{value["flight_fir"][-1]:,}' # 렌트우선 총합(천 단위 콤마 포맷)
