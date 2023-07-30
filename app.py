@@ -91,7 +91,8 @@ def post():
                     rent[1].append(value[v][3][3])
                     rent[2].append(value[v][3][0])
                     rent[3].append(value[v][3][4])
-                    rent[4].append(f'{value[v][2][4]:,}')
+                    print(value[v][2])
+                    rent[4].append(f'{value[v][3][2]:,}')
                 
                 # [['이름', ' ', ' ', ' '], ['타입', ' ', ' ', ' ']...]
                 else:
