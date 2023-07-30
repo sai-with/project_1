@@ -201,7 +201,6 @@ class Recommend():
             else:
                 total_price2 = accom2[-1] + flight2[-1]
                 result['flight_fir'] = accom2[:-1] + flight2[:-1] + [total_price2]# 항공 우선 계획[(숙소), (가는편), (오는편)]
-            
             result['rent_fir'] = None
             # 연결 해제
             self.cursor.close()
@@ -219,7 +218,7 @@ class Recommend():
             if None in [accom1, flight1, rent1] or bud1 < 0:# 예산이 모자랐거나, 조회된 데이터(예약가능한)가 없을 경우
                 result['accom_fir'] = None 
             else: # 제대로 조회된경우 
-                #print(f"{accom1[-1]}, {flight1[-1]}, {rent1[-1]}")
+                print(f"{accom1[-1]}, {flight1[-1]}, {rent1[-1]}")
                 total_price1 = accom1[-1] + flight1[-1] + rent1[-1]
                 result['accom_fir'] = accom1[:-1] + flight1[:-1] + rent1[:-1] + [total_price1]# 숙소 우선 계획[(숙소), (가는편), (오는편)] 
             

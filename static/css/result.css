@@ -1,0 +1,158 @@
+/* 1. 네비 */
+.navBarSection .header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  width: 100%;
+  padding: 1rem;
+  z-index: 1000; 
+}
+  
+.navBarSection .header .logoDiv .logo {
+  color: rgba(9, 17, 26, 0.45);
+  font-weight: 500;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem; 
+}
+
+.navBarSection .header .logoDiv .icon {
+  color: rgba(5, 1, 237, 0.45);
+  font-size: 3rem;
+  margin-right: 10px; 
+}
+
+.navBarSection .header .navBar .navLists .navItem {
+  color: rgba(9, 17, 26, 0.45);
+  font-size: 1.5rem;
+  padding-right: 2rem; 
+}
+
+.navBarSection .activeHeader {
+  background: rgb(113, 170, 182);
+  box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.45); 
+}
+
+/* 2. 메인 */
+.home {
+    height: 50vh;
+    background-image: url("../images/photo4.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+  }
+  
+  .homeText{
+    text-align: center;
+    color: var(--whiteColor);
+    font-size: 2rem;
+    padding-top: 8rem;
+  }
+
+  /* 3. 결과 */
+.popular {
+    padding-top: 2rem;
+}
+.hotel{
+  width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.rent {
+  width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.flight {
+  width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+/* 3-1. 테이블 1,2,3 */
+.box1, .box2, .box3{
+  height: 60%;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+  color: black;
+  line-height: 1.5rem;
+  padding: 10px 0;
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 2px 5px 2px rgba(178, 178, 178, 0.334);
+  background:rgb(248, 248, 248);
+  position: relative;
+  margin: 10px auto;
+  justify-content: center;
+  /* border: 1px solid black; */
+  border-collapse: collapse;
+}
+
+
+.box1 td:nth-child(1) {
+  width: 100px !important;
+}
+
+.box1 td:not(:nth-child(1)) {
+  width: 300px !important;
+}
+
+.box1 td:nth-child(2) {
+  width: 100px !important;
+}
+
+.box2 td:nth-child(1) {
+  width: 100px !important;
+}
+.box2 td:not(:nth-child(1)) {
+  width: 150px !important;
+}
+
+.box2 td:nth-child(2) {
+  width: 100px !important;
+}
+
+.box3 td:nth-child(1) {
+  width: 100px !important;
+}
+
+.box3 td:not(:nth-child(1)) {
+  width: 300px !important;
+}
+
+.box3 td:nth-child(2) {
+  width: 100px !important;
+}
+
+tr, td, th{
+  border: rgba(9, 17, 26, 0.45);
+  border-right: 2px solid rgba(9, 17, 26, 0.45);
+  height: 60px;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* 4. 하단 */
+.footer{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}

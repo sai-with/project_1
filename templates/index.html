@@ -2,37 +2,27 @@
 <html lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <link rel="icon" href={{ url_for('static', filename='css/home.css') }}>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" maximum-scale="1.0," user-scalable="0/">
     <meta name="theme-color" content="#000000">
     <meta name="description" content="Web site created using create-react-app">
-    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!-- <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png"> -->
     
-    <link rel="manifest" href="http://localhost:3000/manifest.json">
-    
-    <title>부산어때</title>
+    <!-- index.css, base.css 연결 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"> 
 
-    <!-- css -->
-    <link rel= "stylesheet" href= "./css_files/base.css" type= "text/css">
-    <link rel= "stylesheet" href= "./css_files/nav.css" type= "text/css">
-    <link rel= "stylesheet" href= "./css_files/home.css" type= "text/css">
-    <link rel= "stylesheet" href= "./css_files/popular.css" type= "text/css">
-    <link rel= "stylesheet" href= "./css_files/footer.css" type= "text/css">
-
-    <!-- js -->
-    <script src="home.js"></script>
-
+    <!-- 타이틀 -->
+    <title>부산어때 메인</title>
 
 </head>
 
   <body>
     <div id="root">
-      <!-- 1. 네비 -->
+      <!-- 1. 메뉴(네비) -->
       <section class="navBarSection">
         <div class="header activeHeader">
-          <!-- 로고, 부산어때 제목 -->
+          <!-- 1-1. 로고, 부산어때 제목 -->
           <div class="logoDiv">
             <a href="#" class="logo">
               <h1 class="flex">
@@ -43,6 +33,7 @@
             </a>
           </div>
 
+            <!-- 1-2. 메뉴바 -->
             <div class="navBar">
               <ul class="navLists flex">
                 <h3 class="navItem">홈</h3>
@@ -58,24 +49,25 @@
       <section class="home">
         <div class="secContainer container">
           <div class="homeText">
+            <!-- 2-1. 메인 페이지 문구 -->
             <h1 class="title">부산 일정을 계획해보세요</h1>
             <h3 class="subTitle">경비 계획을 손쉽게!!</h3>
           </div>
-
-          <!-- 입력칸 -->
+          
+          <!-- 2-2. 입력란 -->
           <div class= "homeCard">
-            <form method="POST", action= '/recommend'>
-              <!-- 달력 -->
+            <form method="POST", action= "/post">
+              <!-- 2-2-1. 달력 -->
               <div id= "day">
                 <input name= "dep_date" value= "date" type= "date" data-placeholder= "기간(시작)" required/>
                 ~
                 <input name= "arr_date" value= "date" type= "date" data-placeholder= "기간(종료)" required/>
               </div>
 
-              <!-- 렌트 -->
+              <!-- 2-2-2. 렌트 -->
               <div id= "rent">
                 <select class= "dropdown" name= car_capacity>
-                  <option value= 0>미선택</option>
+                  <option value= 0>렌트 미선택</option>
                   <option value= 4>4인승</option>
                   <option value= 5>5인승</option>
                   <option value= 7>7인승</option>
@@ -84,23 +76,20 @@
                   <option value= 12>12인승</option>
                 </select>
               </div>
-
+              
+              <!-- 2-2-3. 예산 -->
               <div id= "price">
                   <input class= "money" name= "budget" type="text" placeholder="예산을 입력해주세요"/>
               </div>
-
+              
+              <!-- 2-2-4. 확인 -->
               <div id= "ok" style="float: right;">
-                <button name= "ok_btn" class="btn">확인</button>
+                <button class="btn">확인</button>
               </div>
-
-
             </from>
           </div>
         </div>
       </section>
-
-      
-
 </body>
 </html>
 
