@@ -201,7 +201,7 @@ class Recommend():
             else:
                 total_price2 = accom2[-1] + flight2[-1]
                 result['flight_fir'] = accom2[:-1] + flight2[:-1] + [total_price2]# 항공 우선 계획[(숙소), (가는편), (오는편)]
-            
+            result['rent_fir'] = None
             # 연결 해제
             self.cursor.close()
             self.conn.close()

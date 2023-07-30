@@ -2,37 +2,27 @@
 <html lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <link rel="icon" href="http://localhost:3000/favicon.ico">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" maximum-scale="1.0," user-scalable="0/">
     <meta name="theme-color" content="#000000">
     <meta name="description" content="Web site created using create-react-app">
-    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!-- <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png"> -->
     
-    <link rel="manifest" href="http://localhost:3000/manifest.json">
-    
-    <title>부산어때</title>
+    <!-- index.css, base.css 연결 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"> 
 
-    <!-- css -->
-    <link rel= "stylesheet" href= "./css_files/base.css" type= "text/css">
-    <link rel= "stylesheet" href= "./css_files/nav.css" type= "text/css">
-    <link rel= "stylesheet" href= "./css_files/home.css" type= "text/css">
-    <link rel= "stylesheet" href= "./css_files/popular.css" type= "text/css">
-    <link rel= "stylesheet" href= "./css_files/footer.css" type= "text/css">
-
-    <!-- js -->
-    <script src="home.js"></script>
-
+    <!-- 타이틀 -->
+    <title>부산어때 메인</title>
 
 </head>
 
   <body>
     <div id="root">
-      <!-- 1. 네비 -->
+      <!-- 1. 메뉴(네비) -->
       <section class="navBarSection">
         <div class="header activeHeader">
-          <!-- 로고, 부산어때 제목 -->
+          <!-- 1-1. 로고, 부산어때 제목 -->
           <div class="logoDiv">
             <a href="#" class="logo">
               <h1 class="flex">
@@ -43,6 +33,7 @@
             </a>
           </div>
 
+            <!-- 1-2. 메뉴바 -->
             <div class="navBar">
               <ul class="navLists flex">
                 <h3 class="navItem">홈</h3>
@@ -57,84 +48,48 @@
       <!-- 2. 메인 -->
       <section class="home">
         <div class="secContainer container">
-            <div class="homeText">
-                <h1 class="title">부산 일정을 계획해보세요</h1>
-                <h3 class="subTitle">경비 계획을 손쉽게!!</h3>
-            </div>
+          <div class="homeText">
+            <!-- 2-1. 메인 페이지 문구 -->
+            <h1 class="title">부산 일정을 계획해보세요</h1>
+            <h3 class="subTitle">경비 계획을 손쉽게!!</h3>
+          </div>
+          
+          <!-- 2-2. 입력란 -->
+          <div class= "homeCard">
+            <form method="POST", action= "/post">
+              <!-- 2-2-1. 달력 -->
+              <div id= "day">
+                <input name= "dep_date" value= "date" type= "date" data-placeholder= "기간(시작)" required/>
+                ~
+                <input name= "arr_date" value= "date" type= "date" data-placeholder= "기간(종료)" required/>
+              </div>
 
-          <!-- 입력칸 -->
-          <div class="homeCard">
-            <form method="POST" action="/">
-                <!-- 달력 -->
-                <div id="day">
-                    <input name="dep_date" value="" type="date" data-placeholder="기간(시작)" required />
-                    ~
-                    <input name="arr_date" value="date" type="date" data-placeholder="기간(종료)" required />
-                </div>
-
-                <!-- 렌트 -->
-                <div id= "rent">
-                  <select class= "dropdown" name= car_capacity>
-                    <option value= 0>미선택</option>
-                    <option value= 4>4인승</option>
-                    <option value= 5>5인승</option>
-                    <option value= 7>7인승</option>
-                    <option value= 9>9인승</option>
-                    <option value= 11>11인승</option>
-                    <option value= 12>12인승</option>
-                  </select>
-                </div>
-
-                <div id= "price">
-                    <input class= "money" name= "budget" type="text" placeholder="예산을 입력해주세요"/>
-                </div>
-
-                <div id= "ok" style="float: right;">
-                  <button name= "ok_btn" class="btn">확인</button>
-                </div>
-
-
-            </form>
+              <!-- 2-2-2. 렌트 -->
+              <div id= "rent">
+                <select class= "dropdown" name= car_capacity>
+                  <option value= 0>렌트 미선택</option>
+                  <option value= 4>4인승</option>
+                  <option value= 5>5인승</option>
+                  <option value= 7>7인승</option>
+                  <option value= 9>9인승</option>
+                  <option value= 11>11인승</option>
+                  <option value= 12>12인승</option>
+                </select>
+              </div>
+              
+              <!-- 2-2-3. 예산 -->
+              <div id= "price">
+                  <input class= "money" name= "budget" type="text" placeholder="예산을 입력해주세요"/>
+              </div>
+              
+              <!-- 2-2-4. 확인 -->
+              <div id= "ok" style="float: right;">
+                <button class="btn">확인</button>
+              </div>
+            </from>
           </div>
         </div>
       </section>
-    </div>
-
-    <script>
-      function submitForm(event) {
-        event.preventDefault(); // 폼의 기본 동작(서버로 제출)을 막습니다.
-
-        // 폼에 입력된 값을 가져옵니다.
-        const dep_date = document.querySelector('input[name="dep_date"]').value;
-        const arr_date = document.querySelector('input[name="arr_date"]').value;
-        const car_capacity = document.querySelector('select[name="car_capacity"]').value;
-        const budget = document.querySelector('input[name="budget"]').value;
-
-        // 폼 데이터를 JSON 형태로 만듭니다.
-        const formData = {
-          dep_date: dep_date,
-          arr_date: arr_date,
-          car_capacity: car_capacity,
-          budget: budget
-        };
-
-        // fetch를 사용하여 데이터를 서버로 전송합니다.
-        fetch('/result', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        })
-        .then(response => response.json()) // 서버로부터 응답을 JSON 형태로 파싱합니다.
-        .then(data => {
-          // 서버로부터 받은 데이터(data)를 기반으로 결과 페이지로 이동합니다.
-          window.location.href = `/result?value=${encodeURIComponent(JSON.stringify(data))}`;
-        })
-        .catch(error => console.error('Error:', error));
-      }
-    </script>
-
-  </body>
+</body>
 </html>
 

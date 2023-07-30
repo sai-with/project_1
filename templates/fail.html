@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" maximum-scale="1.0," user-scalable="0/">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Web site created using create-react-app">
+  <!-- <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png"> -->
+
+  <!-- index.css, base.css 연결 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"> 
+
+  <title>부산어때 가격초과</title>
+
+</head>
+
+<body>
+  <div id="root">
+    <!-- 1. 메뉴(네비) -->
+    <section class="navBarSection">
+      <div class="header activeHeader">
+        <!-- 1-1. 로고, 부산어때 제목 -->
+        <div class="logoDiv">
+          <a href="#" class="logo">
+            <h1 class="flex">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="icon"
+                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z">
+                </path>
+              </svg>부산어때
+            </h1>
+          </a>
+        </div>
+
+        <!-- 1-2. 메뉴바 -->
+        <div class="navBar">
+          <ul class="navLists flex">
+            <h3 class="navItem">홈</h3>
+            <h3 class="navItem">축제</h3>
+            <h3 class="navItem">맛집</h3>
+            <h3 class="navItem">추천</h3>
+            <h3 class="navItem">QnA</h3>
+          </ul>
+        </div>
+        <script>
+          window.addEventListener("scroll", function () {
+            const header = document.querySelector(".header");
+            const scrollPosition = window.scrollY;
+        
+            // Change this value to the desired scroll position where the background color changes
+            const scrollThreshold = 100;
+        
+            if (scrollPosition >= scrollThreshold) {
+              header.classList.add("activeHeader");
+            } else {
+              header.classList.remove("activeHeader");
+            }
+          });
+        </script> 
+    </section>
+
+    <!-- 2. 메인 -->
+    <section class="home">
+      <div class="secContainer container">
+
+        <!-- 2-1. 메인 페이지 문구 -->
+        <div class="homeText">
+          <h1 class="title">해당 예산으로 찾을 수 있는 결과가 없습니다</h1>
+          <h3 class="subTitle">다시 입력해주세요</h3>
+        </div>
+    </section>
+
+    <!-- 3. 하단 -->
+    <!-- 비행기 로고랑 부산어때 타이틀 및 문구 -->
+    <section>
+      <div class="footer" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+        <a href="#" style="text-decoration: none;">
+          <h1 class="flex" style="color: rgba(9, 17, 26, 0.45);">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" style="color: rgba(5, 1, 237, 0.45);"
+              class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z">
+              </path>
+            </svg>
+            부산어때
+          </h1>
+        </a>
+        <p style=" color: rgba(9, 17, 26, 0.45); font-weight: 600; margin-top: 10px;">여행 경비를 손쉽게!</p>
+      </div>
+    </section>
+    
+</body>
+
+</html>
