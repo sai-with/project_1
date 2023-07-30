@@ -153,7 +153,7 @@ class Query:
                 ON rb.rent_id = rc.id
                 WHERE capacity = {capacity} 
                 AND DATE(book_date) = DATE('{dep_date}')
-                AND type IN ('디젤', '가솔린')
+                AND type IN ('디젤', '하이브리드')
                 ORDER BY type DESC, saled_price
                 LIMIT 1
                 '''
