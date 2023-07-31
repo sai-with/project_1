@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from recommend import Recommend # recommend.py(추천 로직 파이썬)
+from view.recommend import Recommend # recommend.py(추천 로직 파이썬)
 import sqlite3 as sql
 
 app = Flask(__name__)

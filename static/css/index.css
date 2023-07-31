@@ -92,7 +92,7 @@
 input[type="date"]{
   font-size: 15px;
   position: relative;
-  width: 45%;
+  width: 240px;
   height: 70px;
   padding: 0 42px 0 16px;
   background: url("../images/cal.png") no-repeat right 21px center / 20px auto;

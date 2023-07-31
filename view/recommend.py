@@ -1,7 +1,7 @@
 # 사용예시
 '''
 ex)
-from recommand import Recommand
+from recommend import Recommend
 import sqlite3
 
 conn = db커넥터
