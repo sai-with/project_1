@@ -4,6 +4,5 @@
 ## 추천 기능 로직
 ![추천 모듈 도식](https://github.com/sai-with/project_1/assets/119286271/da5eec14-937f-40d5-b9ac-d61e6d32a518)
 
-## 서비스 구현 로직
 
 강지현, 구민승, 한정욱, 한진희
