@@ -1,0 +1,10 @@
+숙소데이터설명
+
+date: 입실날짜
+name: 업소 이름
+star: 별점(-1: 평점없음)
+img: 이미지링크
+lowest_price: 최저가
+link: 예약링크
+location: 위치(00구)
+type: 숙소 유형(0: 호텔, 1: 펜션)
